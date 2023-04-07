@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2022</title>
+  <style>
+    
+    .tve_table {
+      margin: 0;
+      width: 100%;
+      line-height: 18px;
+      border-spacing: 0;
+      border-collapse: collapse;
+      box-sizing: border-box;
+      border: 2px solid rgb(128,128,128);
+    }
+    p {
+      margin: 0;
+    }
+    .tve_table td {
+      border: 1px solid rgb(221,221,221);
+      text-align: center;
+    }
+    .tve_table th {
+      border: 2px solid rgb(51,51,51);
+      background-color: rgb(249,247,245);
+    }
+
+    .peopleDetails {
+      margin: 0 auto;
+      width: 90%;
+    }
+    .peopleDetails input {
+      margin: 0 20px 5px 0;
+    }
+
+    .slider, .yearSelect {
+      margin: 0 auto;
+      width: 50%;
+    }
+
+    .yearSelect {
+      display: flex;
+      gap: 20px;
+    }
+
+    .yearSelect select {
+      width: 100%;
+    }
+
+    input[type="range"]  {
+      width: 100%;
+    }
+    datalist {
+      display: flex;
+      justify-content: space-between;
+      color: red; 
+      margin-left: 4px;
+      margin-right: -16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="yearSelect">
+    <label for="year">Year</label>
+    <select id="year" onchange="calculate()">
+    </select>
+  </div>
+      
+  <br/>
+  <div><table id="bracketsTable" data-rows="9" data-cols="4" class="tve_table"><thead>
+    <tr ><th rowspan="1" colspan="4"><div ><p ><strong>Federal Tax Brackets</strong></p></div></th></tr><tr ><th ><div ><p><strong>Tax Bracket/Rate</strong></p></div></th><th ><div ><p><strong>Single</strong></p></div></th><th ><div ><p><strong>Married Filing Jointly</strong></p></div></th>
+    </tr></thead></table></div>
+      
+  <br/><br/>
+  <div class="peopleDetails">
+    <label for="person1">Person 1 name</label>
+    <input type="text" id="person1" placeholder="Person 1" onchange="calculate()">
+    <label for="person1Gross">Pretax income</label>
+    <input type="text" id="person1Gross" placeholder="pretax income" onkeyup="calculate()">
+    <br/>
+    <label for="person2">Person 2 name</label>
+    <input type="text" id="person2" placeholder="Person 2" onchange="calculate()">
+    <label for="person2Gross">Pretax income</label>
+    <input type="text" id="person2Gross" placeholder="pretax income" onkeyup="calculate()">
+  </div>
+
+  <br/>
+  <div>
+    <h2>File Singly</h2>
+    <table class="tve_table" id="fileSeperate"><tbody>
+      <tr><th></th><th class="person1Heading">Person1</th><th class="person2Heading">Person2</th></tr>
+      <tr><th>Total</th><th id="p1Tot">0</th><th id="p2Tot">0</th></tr>
+  </tbody></table></div>
+  <br/>
+  <div>
+    <h2>File Jointly</h2>
+    <div class="slider">
+      <input type="range" id="slider" min="0" max="100" value="50" oninput="calculate()" list="tickmarks">
+    
+      <datalist id="tickmarks">
+        <option value="0" label="0"></option>
+        <option value="10"></option>
+        <option value="20"></option>
+        <option value="30"></option>
+        <option value="40"></option>
+        <option value="50" label="50"></option>
+        <option value="60"></option>
+        <option value="70"></option>
+        <option value="80"></option>
+        <option value="90"></option>
+        <option value="100" label="100"></option>
+      </datalist>
+      </div>
+    <table class="tve_table" id="fileJoint"><tbody>
+    <tr><th></th><th>Together</th><th class="person1Heading">Person1</th><th class="person2Heading">Person2</th></tr>
+      <tr><th>Total</th><th id="TotJoint">0</th><th id="p1TotJoint">0</th><th id="p2TotJoint">0</th></tr>
+  </tbody></table></div>
+
+  <script src="tax.js"></script>
+</body>
+</html>
